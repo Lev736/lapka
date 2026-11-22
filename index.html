@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Доброе утро, лапка</title>
+<script>document.documentElement.classList.add("js")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E8EFF9;
+  --glow:#FFF1CC;
+  --paper:#FFFDF7;
+  --ink:#24314D;
+  --ink-soft:#56627D;
+  --sun:#FFC83A;
+  --sun-ink:#6B4A00;
+  --halo:rgba(255,200,58,.22);
+  --tape:rgba(255,200,58,.55);
+  --kiss:#D2365E;
+  --kiss-ink:#FFFFFF;
+  --line:#CFD9E8;
+  --env-flap:#F3ECDD;
+  --chest:#C98A4B;
+  --chest-dark:#8F5A2B;
+  --r-common:#6B7590;
+  --r-rare:#2F6FCF;
+  --r-epic:#8A3FC4;
+  --r-leg:#B87A00;
+  --shadow:0 1px 0 rgba(36,49,77,.06), 0 12px 26px -16px rgba(36,49,77,.4);
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131B2E; --glow:#33301F; --paper:#1D2742; --ink:#EEF2FA; --ink-soft:#A8B3CB;
+    --sun:#FFD05A; --sun-ink:#5A3E00; --halo:rgba(255,208,90,.16); --tape:rgba(255,208,90,.32);
+    --kiss:#FF6A8C; --kiss-ink:#2A0E18; --line:#2D3958; --env-flap:#26315A;
+    --chest:#B57A40; --chest-dark:#7A4C22;
+    --r-common:#A8B3CB; --r-rare:#7FB0FF; --r-epic:#C99AF2; --r-leg:#FFD05A;
+    --shadow:0 1px 0 rgba(0,0,0,.25), 0 14px 30px -16px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131B2E; --glow:#33301F; --paper:#1D2742; --ink:#EEF2FA; --ink-soft:#A8B3CB;
+  --sun:#FFD05A; --sun-ink:#5A3E00; --halo:rgba(255,208,90,.16); --tape:rgba(255,208,90,.32);
+  --kiss:#FF6A8C; --kiss-ink:#2A0E18; --line:#2D3958; --env-flap:#26315A;
+  --chest:#B57A40; --chest-dark:#7A4C22;
+  --r-common:#A8B3CB; --r-rare:#7FB0FF; --r-epic:#C99AF2; --r-leg:#FFD05A;
+  --shadow:0 1px 0 rgba(0,0,0,.25), 0 14px 30px -16px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+html{background:var(--bg);scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  background:radial-gradient(130% 55% at 50% 0%, var(--glow), transparent 62%), var(--bg);
+  background-color:var(--bg);
+  color:var(--ink);
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:17px;
+  line-height:1.5;
+}
+main{max-width:440px;margin:0 auto;padding:0 20px 56px}
+button{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer}
+:focus-visible{outline:3px solid var(--kiss);outline-offset:3px;border-radius:8px}
+[hidden]{display:none !important}
+
+/* hero */
+.hero{text-align:center;padding:44px 0 8px}
+.sun{width:150px;height:150px;display:block;margin:0 auto 6px;animation:rise 1.5s cubic-bezier(.2,.8,.25,1) both}
+.sun .halo{fill:var(--halo)}
+.sun .core{fill:var(--sun)}
+.sun .feat{stroke:var(--sun-ink);stroke-width:4;stroke-linecap:round;fill:none}
+.sun .dot{fill:var(--sun-ink)}
+.sun .cheek{fill:var(--kiss);opacity:.32}
+.eyes-closed{animation:fadeOut .25s ease 1.9s both}
+.eyes-open{animation:fadeIn .25s ease 1.9s both}
+@keyframes rise{from{transform:translateY(70px);opacity:0}to{transform:none;opacity:1}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+h1{font-family:"Caveat",cursive;font-weight:700;font-size:clamp(50px,15vw,66px);line-height:.95;margin:0;letter-spacing:.5px}
+.lead{color:var(--ink-soft);max-width:30ch;margin:14px auto 0}
+
+section{margin-top:46px}
+h2{font-family:"Caveat",cursive;font-weight:700;font-size:34px;line-height:1.05;margin:0 0 10px}
+.sub{color:var(--ink-soft);margin:0 0 16px;font-size:15.5px}
+
+/* note */
+.note{position:relative;background:var(--paper);border-radius:4px;padding:26px 22px 20px;box-shadow:var(--shadow);transform:rotate(-1.2deg)}
+.note::before{content:"";position:absolute;top:-11px;left:50%;width:88px;height:22px;margin-left:-44px;background:var(--tape);transform:rotate(2.5deg)}
+.done{list-style:none;margin:0;padding:0}
+.done li{position:relative;padding:8px 0 8px 34px;border-bottom:1px dashed var(--line)}
+.done li:last-child{border-bottom:0}
+.done li::before{content:"✓";position:absolute;left:4px;top:3px;font:700 26px/1.3 "Caveat",cursive;color:var(--kiss)}
+.done li.best{font-weight:800}
+
+/* buttons */
+.tug-btn{background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:13px 30px;font-weight:800;font-size:18px;transition:transform .1s}
+.tug-btn:active{transform:scale(.95)}
+.tug-btn:disabled{opacity:.5;cursor:default}
+.give-btn{background:transparent;border:2px solid var(--ink-soft);border-radius:999px;padding:11px 22px;font-weight:800;font-size:17px;color:var(--ink)}
+.give-btn:active{transform:scale(.96)}
+
+/* chest */
+.chest-wrap{text-align:center}
+.chest{display:block;margin:6px auto 0;padding:0;border:0;background:transparent;width:150px}
+.chest svg{width:150px;height:auto;display:block;overflow:visible}
+.chest .base{fill:var(--chest)}
+.chest .band{fill:var(--chest-dark)}
+.chest .lid{fill:var(--chest);transform-box:fill-box;transform-origin:0% 100%;transition:transform .45s cubic-bezier(.3,1.4,.5,1)}
+.chest .lidgrp{transform-box:fill-box;transform-origin:0% 100%;transition:transform .45s cubic-bezier(.3,1.4,.5,1)}
+.chest .lock{fill:var(--sun)}
+.chest .glow{fill:var(--sun);opacity:0;transition:opacity .4s}
+.chest.wiggle{animation:wiggle 1.8s ease-in-out infinite}
+.chest.open .lidgrp{transform:rotate(-24deg) translate(-4px,-10px)}
+.chest.open .glow{opacity:.55}
+.chest:disabled{cursor:default}
+@keyframes wiggle{0%,80%,100%{transform:none}84%{transform:rotate(-4deg)}88%{transform:rotate(4deg)}92%{transform:rotate(-3deg)}96%{transform:rotate(2deg)}}
+.chest-hint{margin:10px 0 0;font-weight:700;color:var(--ink-soft)}
+.prize{margin:18px auto 0;max-width:340px;text-align:left;background:var(--paper);border-radius:12px;box-shadow:var(--shadow);border-left:6px solid var(--rc,var(--r-common));padding:14px 18px 16px;animation:pop-in .35s ease both}
+.prize .rarity{display:block;font:700 22px/1.1 "Caveat",cursive;color:var(--rc,var(--r-common));margin-bottom:4px}
+.prize .text{margin:0;font-weight:700;font-size:18px;line-height:1.35}
+.prize[data-r="common"]{--rc:var(--r-common)}
+.prize[data-r="rare"]{--rc:var(--r-rare)}
+.prize[data-r="epic"]{--rc:var(--r-epic)}
+.prize[data-r="leg"]{--rc:var(--r-leg)}
+.prize[data-r="leg"]{box-shadow:0 0 0 2px var(--r-leg),var(--shadow)}
+
+/* hug */
+.hug-wrap{text-align:center}
+.hug-btn{--p:0;position:relative;width:156px;height:156px;border-radius:50%;border:0;padding:0;background:conic-gradient(var(--kiss) calc(var(--p)*1turn), var(--line) 0);display:grid;place-items:center;margin:4px auto 0;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:none}
+.hug-btn::before{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--paper);box-shadow:var(--shadow)}
+.hug-btn span{position:relative;font:700 40px/1 "Caveat",cursive;color:var(--ink);pointer-events:none}
+.hug-btn.holding{transform:scale(.96)}
+.hug-say{min-height:1.4em;margin:14px 0 0;font-family:"Caveat",cursive;font-weight:700;font-size:26px;line-height:1.15}
+.hug-total{margin:4px 0 0;color:var(--ink-soft);font-weight:700;font-size:15.5px;min-height:1.4em}
+
+/* chat */
+.chat{display:flex;flex-direction:column;gap:8px;margin:6px 0 16px}
+.b{margin:0;max-width:78%;padding:9px 14px;border-radius:18px;line-height:1.35;font-weight:600;animation:pop-in .2s ease both}
+.b.k{align-self:flex-start;background:var(--paper);box-shadow:var(--shadow);border-bottom-left-radius:6px}
+.b.l{align-self:flex-end;background:var(--kiss);color:var(--kiss-ink);border-bottom-right-radius:6px}
+.b.typing{color:var(--ink-soft);letter-spacing:2px}
+@keyframes pop-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.chat-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+/* envelope + letter */
+.envelope{position:relative;display:block;width:100%;max-width:300px;aspect-ratio:1.55;margin:26px auto 44px;padding:0;border:0;border-radius:10px;background:var(--paper);box-shadow:var(--shadow);overflow:visible;perspective:600px}
+.envelope::after{content:"";position:absolute;inset:0;border-radius:10px;background:linear-gradient(to top right,transparent 49.5%,var(--line) 50%,transparent 50.5%) left bottom/50% 100% no-repeat,linear-gradient(to top left,transparent 49.5%,var(--line) 50%,transparent 50.5%) right bottom/50% 100% no-repeat;pointer-events:none}
+.flap{position:absolute;left:0;right:0;top:0;height:58%;background:var(--env-flap);clip-path:polygon(0 0,100% 0,50% 100%);border-radius:10px 10px 0 0;transform-origin:top;transition:transform .45s ease;z-index:1}
+.seal{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--kiss);display:grid;place-items:center;font-size:20px;z-index:2;transition:opacity .2s}
+.env-label{position:absolute;left:0;right:0;top:100%;margin-top:10px;font-family:"Caveat",cursive;font-weight:700;font-size:24px;color:var(--ink-soft)}
+.envelope.open .flap{transform:rotateX(180deg)}
+.envelope.open .seal{opacity:0}
+.letter{margin:26px auto 0;max-width:340px;text-align:left;transform:rotate(.8deg);animation:letter-in .5s ease both}
+.letter p{font-family:"Caveat",cursive;font-weight:500;font-size:25px;line-height:1.25;margin:0 0 8px;color:var(--ink)}
+.letter .hi{font-weight:700;font-size:29px;margin-bottom:10px}
+.letter .gap{margin-top:16px}
+.letter .love{font-weight:700;font-size:29px;margin-top:16px}
+.letter .from{font-weight:700;font-size:27px;text-align:right;margin:14px 0 0;line-height:1.15}
+@keyframes letter-in{from{opacity:0;transform:translateY(14px) rotate(.8deg)}to{opacity:1;transform:rotate(.8deg)}}
+
+.divider{position:relative;width:100vw;margin:64px 0 0 calc(50% - 50vw);height:24px;display:grid;place-items:center}
+.divider::before{content:"";position:absolute;left:0;right:0;top:50%;height:12px;margin-top:-6px;background:var(--ink-soft);opacity:.5;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='12'%3E%3Cpath d='M0 6 Q7 0 14 6 T28 6' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") repeat-x center/28px 12px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='12'%3E%3Cpath d='M0 6 Q7 0 14 6 T28 6' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") repeat-x center/28px 12px}
+.divider-heart{position:relative;z-index:1;display:block;padding:0 12px;background:var(--bg);line-height:0}
+.divider-heart svg{width:24px;height:22px;display:block;fill:var(--kiss)}
+.divider + .kiss{margin-top:64px}
+.divider + .sign{margin-top:44px}
+
+html.js .nojs{display:none}
+html:not(.js) main > :not(.hero){display:none}
+.nojs{margin:18px auto 0;max-width:32ch;line-height:1.45;padding:10px 14px;border-radius:12px;background:var(--paper);box-shadow:var(--shadow);font-weight:700}
+
+/* coupons */
+.coupons{display:grid;gap:14px}
+.coupon{position:relative;display:grid;grid-template-columns:58px 1fr;width:100%;text-align:left;background:var(--paper);border:2px solid transparent;border-radius:12px;padding:0;box-shadow:var(--shadow);transition:border-color .2s,transform .15s}
+.coupon:active{transform:scale(.985)}
+.coupon::before,.coupon::after{content:"";position:absolute;left:51px;width:14px;height:14px;border-radius:50%;background:var(--bg)}
+.coupon::before{top:-8px}
+.coupon::after{bottom:-8px}
+.stub{display:grid;place-items:center;font-size:26px;border-right:2px dashed var(--line)}
+.c-body{padding:14px 16px}
+.c-title{display:block;font-weight:700;line-height:1.35}
+.c-state{display:block;font-family:"Caveat",cursive;font-weight:700;font-size:21px;color:var(--kiss);line-height:1.2;max-height:0;opacity:0;overflow:hidden;transition:max-height .25s,opacity .25s,margin .25s}
+.coupon[aria-pressed="true"]{border-color:var(--kiss)}
+.coupon[aria-pressed="true"] .c-state{max-height:4em;opacity:1;margin-top:4px}
+
+/* kiss clicker */
+.kiss{text-align:center;padding-bottom:8px}
+.kiss-btn{width:156px;height:156px;border-radius:50%;border:0;background:var(--kiss);color:var(--kiss-ink);font:700 46px/1 "Caveat",cursive;box-shadow:0 0 0 10px var(--halo),0 18px 30px -14px rgba(210,54,94,.6)}
+.kiss-btn.pop{animation:pop .32s ease}
+@keyframes pop{0%{transform:scale(1)}35%{transform:scale(.9)}70%{transform:scale(1.06)}100%{transform:scale(1)}}
+.count{margin:18px 0 0;font-weight:800}
+.extra{margin:4px 0 0;min-height:1.5em;font-family:"Caveat",cursive;font-size:24px;line-height:1.2;color:var(--ink-soft)}
+
+.ult{margin:22px auto 0;max-width:320px;text-align:left}
+.ult-head{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:15px;color:var(--ink-soft);margin-bottom:6px}
+.bar{height:12px;border-radius:6px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:6px;background:var(--kiss);transition:width .2s}
+.ult.ready .bar i{background:linear-gradient(90deg,var(--kiss),var(--sun),var(--kiss));background-size:200% 100%;animation:shine 1s linear infinite}
+@keyframes shine{to{background-position:-200% 0}}
+.ult-say{min-height:1.3em;margin:14px 0 0;text-align:center;font-family:"Caveat",cursive;font-weight:700;font-size:26px;line-height:1.15}
+.counter-btns{display:flex;justify-content:center;gap:12px;margin-top:12px}
+.counter-btns .give-btn{border-color:var(--kiss);font-size:18px;padding:11px 24px}
+
+.rank{margin:26px auto 0;max-width:320px;background:var(--paper);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px 16px;text-align:left}
+.rank-name{margin:0;font:700 28px/1.1 "Caveat",cursive}
+.rank-name .stars{color:var(--r-leg);white-space:nowrap}
+.rank .bar{margin-top:10px;height:8px}
+.rank .bar i{background:var(--r-leg)}
+.rank-next{margin:6px 0 0;font-size:14.5px;font-weight:700;color:var(--ink-soft)}
+.rank-say{margin:10px 0 0;font-weight:700;line-height:1.35;min-height:1.35em}
+.stats{margin:12px 0 0;font-size:14.5px;font-weight:700;color:var(--ink-soft)}
+
+/* sign-off */
+.sign{text-align:center}
+.sign p{margin:0;color:var(--ink-soft)}
+.sign .best-sign{font-family:"Caveat",cursive;font-weight:700;font-size:30px;line-height:1.15;color:var(--ink);margin-top:6px}
+
+/* flying particles */
+#fx{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+.p{position:absolute;font:700 30px/1 "Caveat",cursive;color:var(--kiss);transform:translate(-50%,-50%);animation:fly 1.15s cubic-bezier(.2,.7,.3,1) both}
+.p.digit{color:var(--ink);font-size:38px}
+.p.big{font-size:40px;animation-duration:1.6s}
+@keyframes fly{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}
+  15%{opacity:1}
+  100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--r)) scale(1.15)}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .sun{animation:none}
+  .eyes-closed{animation:none;opacity:0}
+  .eyes-open{animation:none;opacity:1}
+  .kiss-btn.pop{animation:none}
+  .c-state{transition:none}
+  .b,.prize{animation:none}
+  .flap,.seal,.chest .lidgrp{transition:none}
+  .chest.wiggle{animation:none}
+  .ult.ready .bar i{animation:none}
+  .letter{animation:none}
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <svg class="sun" viewBox="0 0 150 150" aria-hidden="true">
+      <circle class="halo" cx="75" cy="75" r="72"/>
+      <circle class="core" cx="75" cy="75" r="54"/>
+      <g class="eyes-closed">
+        <path class="feat" d="M52 70 q7 7 14 0"/>
+        <path class="feat" d="M84 70 q7 7 14 0"/>
+      </g>
+      <g class="eyes-open">
+        <circle class="dot" cx="59" cy="68" r="5"/>
+        <circle class="dot" cx="91" cy="68" r="5"/>
+      </g>
+      <circle class="cheek" cx="49" cy="85" r="7"/>
+      <circle class="cheek" cx="101" cy="85" r="7"/>
+      <path class="feat" d="M63 87 q12 11 24 0"/>
+    </svg>
+    <h1>Доброе утро,<br>лапка</h1>
+    <p class="lead">Котик выпустил обновление. Тут много нового, тыкай на всё, что тыкается.</p>
+    <p class="nojs">Похоже, это открылось как обычный файл, и всё живое тут спит 🙈 Открой по ссылке от котика, там всё тыкается.</p>
+  </header>
+
+  <section>
+    <div class="note">
+      <h2>Отчёт за ночь</h2>
+      <ul class="done">
+        <li>Хороший сон заказан. Красивым девушкам положен без очереди.</li>
+        <li>Котик соскучился. Опять. По самой лучшей девушке, так что это нормально.</li>
+        <li>Обнимашки копятся до встречи. Проценты капают.</li>
+        <li>Перекус по расписанию. Самой лучшей нужны силы.</li>
+        <li>Тьмоки на складе. Выдача внизу, теперь с ультой.</li>
+        <li class="best">Ты лучшая. «Нет ты» не принимается.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chest-wrap">
+    <h2>Ежедневная награда</h2>
+    <p class="sub">Раз в день котик кладёт сюда комплимент. Бывают обычные, редкие, эпические и легендарные.</p>
+    <button type="button" class="chest wiggle" id="chest" aria-label="Открыть сундук">
+      <svg viewBox="0 0 120 100" aria-hidden="true">
+        <ellipse class="glow" cx="60" cy="44" rx="46" ry="16"/>
+        <rect class="base" x="14" y="46" width="92" height="46" rx="6"/>
+        <rect class="band" x="14" y="58" width="92" height="6"/>
+        <rect class="band" x="30" y="46" width="7" height="46"/>
+        <rect class="band" x="83" y="46" width="7" height="46"/>
+        <g class="lidgrp">
+          <path class="lid" d="M14 47 V34 Q14 16 60 16 Q106 16 106 34 V47 Z"/>
+          <rect class="band" x="30" y="19" width="7" height="28"/>
+          <rect class="band" x="83" y="19" width="7" height="28"/>
+        </g>
+        <rect class="lock" x="52" y="40" width="16" height="18" rx="3"/>
+      </svg>
+    </button>
+    <p class="chest-hint" id="chestHint">Нажми на сундук</p>
+    <div class="prize" id="prize" data-r="common" aria-live="polite" hidden>
+      <span class="rarity" id="prizeRarity"></span>
+      <p class="text" id="prizeText"></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Купоны</h2>
+    <p class="sub">Нажми, чтобы забрать. Действуют бессрочно. Погасить просто: напиши котику.</p>
+    <div class="coupons">
+      <button type="button" class="coupon" data-id="hug" aria-pressed="false">
+        <span class="stub" aria-hidden="true">🤗</span>
+        <span class="c-body"><span class="c-title">Обнимашка вне очереди. Действует на каждой встрече</span><span class="c-state">Забрано ✓</span></span>
+      </button>
+      <button type="button" class="coupon" data-id="walk" aria-pressed="false">
+        <span class="stub" aria-hidden="true">🗺️</span>
+        <span class="c-body"><span class="c-title">Прогулка по твоему маршруту. Куда идём, решаешь ты</span><span class="c-state">Забрано ✓</span></span>
+      </button>
+      <button type="button" class="coupon" data-id="talk" aria-pressed="false">
+        <span class="stub" aria-hidden="true">💬</span>
+        <span class="c-body"><span class="c-title">Вечер разговоров. Рассказываешь что угодно, котик слушает и не спорит</span><span class="c-state">Забрано ✓</span></span>
+      </button>
+      <button type="button" class="coupon" data-id="movie" aria-pressed="false">
+        <span class="stub" aria-hidden="true">🍿</span>
+        <span class="c-body"><span class="c-title">Совместный просмотр. Выбираешь ты, котик смотрит до конца</span><span class="c-state">Забрано ✓</span></span>
+      </button>
+      <button type="button" class="coupon" data-id="meet" aria-pressed="false">
+        <span class="stub" aria-hidden="true">🚆</span>
+        <span class="c-body"><span class="c-title">Встреча. Назови день, котик приедет</span><span class="c-state">Забрано ✓ Теперь назови день</span></span>
+      </button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Кто милее?</h2>
+    <div class="chat" id="chat" aria-live="polite"></div>
+    <div class="chat-actions">
+      <button type="button" class="tug-btn" id="nettyBtn">Нет ты</button>
+    </div>
+  </section>
+
+  <section class="hug-wrap">
+    <h2>Обнимашка</h2>
+    <p class="sub">Зажми и держи. Чем дольше держишь, тем крепче обнимашка.</p>
+    <button type="button" class="hug-btn" id="hug" aria-label="Обнимашка: зажми и держи"><span id="hugLabel">Обними</span></button>
+    <p class="hug-say" id="hugSay" aria-live="polite"></p>
+    <p class="hug-total" id="hugTotal"></p>
+  </section>
+
+  <div class="divider" aria-hidden="true">
+    <span class="divider-heart"><svg viewBox="0 0 22 20"><path d="M11 19 C1 12 1 3 6.5 3 C9 3 11 5 11 7 C11 5 13 3 15.5 3 C21 3 21 12 11 19 Z"/></svg></span>
+  </div>
+
+  <section class="kiss">
+    <button type="button" class="kiss-btn" id="kiss">Тьмок</button>
+    <p class="count" id="count" aria-live="polite">Нажми, чтобы получить тьмок. Норма на сегодня: 50</p>
+    <p class="extra" id="extra" aria-live="polite"></p>
+
+    <div class="ult" id="ult">
+      <div class="ult-head"><span>Ульта котика</span><span id="ultPct">0%</span></div>
+      <div class="bar"><i id="ultBar"></i></div>
+      <p class="ult-say" id="ultSay" aria-live="polite"></p>
+      <div class="counter-btns" id="counterBtns" hidden>
+        <button type="button" class="give-btn" id="mimicBtn">Мимик</button>
+        <button type="button" class="give-btn" id="unoBtn">Уно</button>
+      </div>
+    </div>
+
+    <div class="rank">
+      <p class="rank-name" id="rankName">Воин</p>
+      <div class="bar"><i id="rankBar"></i></div>
+      <p class="rank-next" id="rankNext"></p>
+      <p class="rank-say" id="rankSay" aria-live="polite"></p>
+      <p class="stats" id="stats"></p>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">
+    <span class="divider-heart"><svg viewBox="0 0 22 20"><path d="M11 19 C1 12 1 3 6.5 3 C9 3 11 5 11 7 C11 5 13 3 15.5 3 C21 3 21 12 11 19 Z"/></svg></span>
+  </div>
+
+  <footer class="sign">
+    <p>Отвечать необязательно. Только перекуси что-нибудь, ладно?</p>
+    <button type="button" class="envelope" id="envelope" aria-expanded="false" aria-controls="letter" hidden>
+      <span class="flap" aria-hidden="true"></span>
+      <span class="seal" aria-hidden="true">❤️</span>
+      <span class="env-label">Открой в конце</span>
+    </button>
+    <p class="best-sign" id="bestSign">От самого лучшего парня на свете ❤️</p>
+    <div class="note letter" id="letter">
+      <p class="hi">Лапка,</p>
+      <p>у тебя самый очаровательный смех на свете. Ради него я готов шутить даже самые глупые шутки.</p>
+      <p>А улыбка у тебя вообще нечестная: улыбнёшься, и я забываю, что хотел сказать.</p>
+      <p class="gap">Ты очень красивая, и я никогда не устану тебе это говорить.</p>
+      <p>Ты умница, и мне нравится, как ты думаешь.</p>
+      <p>Ты добрая и тёплая, и рядом с тобой всё становится ярче.</p>
+      <p class="gap">С тобой мне спокойно. С тобой хочется быть лучше.</p>
+      <p>Ты моя самая особенная, и я горжусь тобой.</p>
+      <p class="love">Я очень тебя люблю.</p>
+      <p class="from">От самого лучшего парня на свете,<br>твой котик ❤️</p>
+    </div>
+  </footer>
+</main>
+<div id="fx" aria-hidden="true"></div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var layer = document.getElementById('fx');
+
+  // ---------- storage ----------
+  var KEY = 'lapka-v2';
+  var S = {};
+  try { S = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e) { S = {}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} }
+  function num(v){ return typeof v === 'number' && isFinite(v) ? v : 0; }
+  function todayKey(){
+    var d = new Date();
+    return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+  }
+  S.total = num(S.total); S.today = num(S.today); S.charge = num(S.charge);
+  S.returned = num(S.returned); S.hugs = num(S.hugs);
+  S.seen = S.seen && typeof S.seen === 'object' ? S.seen : {};
+  function rollDay(){
+    var k = todayKey();
+    if (S.day !== k){ S.day = k; S.today = 0; save(); }
+  }
+  rollDay();
+
+  // ---------- particles ----------
+  function centerOf(el){
+    var r = el.getBoundingClientRect();
+    return [r.left + r.width/2, r.top + r.height/2];
+  }
+  function burst(el, chars, n, cls, dir){
+    if (reduce) return;
+    var c = centerOf(el);
+    for (var i = 0; i < n; i++){
+      var s = document.createElement('span');
+      s.className = 'p' + (cls ? ' ' + cls : '');
+      s.textContent = chars[i % chars.length];
+      s.style.left = c[0] + 'px';
+      s.style.top = c[1] + 'px';
+      var spread = cls && cls.indexOf('big') > -1 ? 190 : 130;
+      var up = -(130 + Math.random()*170);
+      var dy = dir === 'down' ? -up : (dir === 'both' ? (i % 2 ? -up : up) : up);
+      s.style.setProperty('--dx', ((Math.random()*2-1)*spread).toFixed(0) + 'px');
+      s.style.setProperty('--dy', dy.toFixed(0) + 'px');
+      s.style.setProperty('--r', ((Math.random()*2-1)*45).toFixed(0) + 'deg');
+      s.style.animationDelay = (i*28) + 'ms';
+      s.addEventListener('animationend', function(){ this.remove(); });
+      layer.appendChild(s);
+    }
+  }
+
+  // ---------- daily chest ----------
+  var POOL = {
+    common: [
+      'Ты очень красивая. Просто напоминаю',
+      'У тебя самая очаровательная улыбка',
+      'Ты умница. Да, сегодня тоже',
+      'С тобой спокойно и хорошо',
+      'Ты милая. Это не обсуждается',
+      'Котик гордится тобой',
+      'Ты добрая, и это видно',
+      'Твой смех — лучший звук за день',
+      'Ты очаровашка, как всегда',
+      'Ты справишься со всем сегодня. Котик в тебя верит'
+    ],
+    rare: [
+      'Ты такая красивая, что котик забывает, что хотел написать',
+      'Рядом с тобой хочется быть лучше',
+      'Твоя улыбка заряжает котика на весь день',
+      'Ты тёплая. Даже через экран греешь',
+      'Мне нравится, как ты думаешь',
+      'Ты делаешь мой день лучше просто тем, что ты есть',
+      'Ты умеешь поддержать так, как никто',
+      'Ты очень живая и настоящая. Котик это обожает'
+    ],
+    epic: [
+      'Ты самая красивая девушка, которую котик видел. Без преувеличений',
+      'С тобой даже обычный день ощущается особенным',
+      'Ты моя самая особенная. Всегда',
+      'Когда ты смеёшься, котик улыбается как дурак',
+      'Ты не просто милая, ты невероятная',
+      'Котику с тобой повезло. Очень'
+    ],
+    leg: [
+      'Ты лучшая девушка на свете. Это официально',
+      'Ты моя богиня',
+      'Ты самое ценное, что у меня есть',
+      'Если бы можно было выбрать заново, котик выбрал бы тебя. Снова и снова',
+      'Я тебя очень люблю. Сильнее, чем умею сказать'
+    ]
+  };
+  var RNAME = {common:'Обычный', rare:'Редкий', epic:'Эпический', leg:'Легендарный'};
+  var chest = document.getElementById('chest');
+  var chestHint = document.getElementById('chestHint');
+  var prize = document.getElementById('prize');
+  var prizeRarity = document.getElementById('prizeRarity');
+  var prizeText = document.getElementById('prizeText');
+
+  function rollRarity(){
+    var x = Math.random();
+    if (x < 0.06) return 'leg';
+    if (x < 0.22) return 'epic';
+    if (x < 0.52) return 'rare';
+    return 'common';
+  }
+  function pickFrom(r){
+    var list = POOL[r];
+    var seen = S.seen[r] || [];
+    var free = [];
+    for (var i = 0; i < list.length; i++) if (seen.indexOf(i) < 0) free.push(i);
+    if (!free.length){ seen = []; for (var j = 0; j < list.length; j++) free.push(j); }
+    var idx = free[Math.floor(Math.random()*free.length)];
+    seen.push(idx);
+    S.seen[r] = seen;
+    return idx;
+  }
+  function showPrize(r, idx){
+    var list = POOL[r] || POOL.common;
+    prize.dataset.r = r;
+    prizeRarity.textContent = RNAME[r] || RNAME.common;
+    prizeText.textContent = list[idx] || list[0];
+    prize.hidden = false;
+  }
+  function chestOpened(){
+    chest.classList.remove('wiggle');
+    chest.classList.add('open');
+    chest.disabled = true;
+    chest.setAttribute('aria-label', 'Сундук на сегодня открыт');
+    chestHint.textContent = 'Следующий сундук откроется завтра';
+  }
+  if (S.chestDay === todayKey() && S.chestR && POOL[S.chestR]){
+    chestOpened();
+    showPrize(S.chestR, num(S.chestIdx));
+  }
+  chest.addEventListener('click', function(){
+    if (chest.disabled) return;
+    var r = rollRarity();
+    var idx = pickFrom(r);
+    S.chestDay = todayKey(); S.chestR = r; S.chestIdx = idx; save();
+    chestOpened();
+    setTimeout(function(){
+      showPrize(r, idx);
+      var many = r === 'leg' ? 26 : r === 'epic' ? 16 : 10;
+      burst(chest, r === 'leg' ? ['✨','❤️','⭐'] : ['✨','❤️'], many, r === 'leg' ? 'big' : '');
+    }, reduce ? 0 : 380);
+  });
+
+  // ---------- coupons ----------
+  var CKEY = 'lapka-coupons';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(CKEY) || '{}') || {}; } catch(e) { saved = {}; }
+  document.querySelectorAll('.coupon').forEach(function(c){
+    var id = c.dataset.id;
+    if (saved[id]) c.setAttribute('aria-pressed','true');
+    c.addEventListener('click', function(){
+      var on = c.getAttribute('aria-pressed') !== 'true';
+      c.setAttribute('aria-pressed', String(on));
+      saved[id] = on;
+      try { localStorage.setItem(CKEY, JSON.stringify(saved)); } catch(e) {}
+      if (on) burst(c, ['✨'], 6);
+    });
+  });
+
+  // ---------- «нет ты» ----------
+  var chat = document.getElementById('chat');
+  var nettyBtn = document.getElementById('nettyBtn');
+  var STEPS = [
+    {me:'Нет ты',  him:['Очаровашка']},
+    {me:'Нет ты',  him:['Умница']},
+    {me:'Нет ты!', him:['Самая красивая']},
+    {me:'НЕТ ТЫ',  him:['Ладно… В «нет ты» победила ты 🏆', 'Но красивая всё равно ты ❤️']}
+  ];
+  var step = 0, busy = false;
+  function bubble(text, who){
+    var p = document.createElement('p');
+    p.className = 'b ' + who;
+    p.textContent = text;
+    chat.appendChild(p);
+    return p;
+  }
+  function startChat(){
+    chat.innerHTML = '';
+    bubble('Милаха', 'k');
+    step = 0;
+    nettyBtn.hidden = false;
+    nettyBtn.disabled = false;
+    nettyBtn.textContent = STEPS[0].me;
+  }
+  function himSays(lines, i, done){
+    var typing = bubble('•••', 'k typing');
+    typing.setAttribute('aria-hidden', 'true');
+    setTimeout(function(){
+      typing.remove();
+      var last = bubble(lines[i], 'k');
+      if (i + 1 < lines.length) himSays(lines, i + 1, done);
+      else done(last);
+    }, reduce ? 150 : 750);
+  }
+  nettyBtn.addEventListener('click', function(){
+    if (busy || step >= STEPS.length) return;
+    busy = true;
+    nettyBtn.disabled = true;
+    var s = STEPS[step];
+    bubble(s.me, 'l');
+    step++;
+    himSays(s.him, 0, function(last){
+      busy = false;
+      if (step >= STEPS.length){
+        nettyBtn.hidden = true;
+        burst(last, ['❤️','🏆','❤️'], 14);
+      } else {
+        nettyBtn.textContent = STEPS[step].me;
+        nettyBtn.disabled = false;
+      }
+    });
+  });
+  startChat();
+
+  // ---------- обнимашка ----------
+  var hug = document.getElementById('hug');
+  var hugLabel = document.getElementById('hugLabel');
+  var hugSay = document.getElementById('hugSay');
+  var hugTotal = document.getElementById('hugTotal');
+  var HUG_FULL = 15;
+  var holdStart = 0, raf = null, holding = false;
+  function fmtSec(t){ return t < 10 ? t.toFixed(1).replace('.', ',') : String(Math.floor(t)); }
+  function showHugTotal(){
+    var t = Math.round(S.hugs);
+    hugTotal.textContent = t > 0 ? 'Накоплено обнимашек: ' + t + ' сек. Выдача при встрече' : '';
+  }
+  function tick(){
+    var t = (Date.now() - holdStart) / 1000;
+    hug.style.setProperty('--p', Math.min(1, t / HUG_FULL).toFixed(3));
+    hugLabel.textContent = fmtSec(t) + ' с';
+    raf = requestAnimationFrame(tick);
+  }
+  function hugStart(e){
+    if (holding) return;
+    if (e && e.cancelable) e.preventDefault();
+    holding = true;
+    holdStart = Date.now();
+    hug.classList.add('holding');
+    hugSay.textContent = 'Обнимаю…';
+    if (e && e.pointerId != null && hug.setPointerCapture){ try { hug.setPointerCapture(e.pointerId); } catch(err) {} }
+    tick();
+  }
+  function hugEnd(){
+    if (!holding) return;
+    holding = false;
+    cancelAnimationFrame(raf);
+    hug.classList.remove('holding');
+    var t = (Date.now() - holdStart) / 1000;
+    var msg;
+    if (t < 0.7) msg = 'Это был тьмок, а не обнимашка 😏 Держи дольше';
+    else if (t < 3) msg = 'Быстрая обнимашка. Засчитано';
+    else if (t < 7) msg = 'Нормальная такая обнимашка. Котик доволен';
+    else if (t < 15) msg = 'Долгая обнимашка. Котик растаял';
+    else msg = 'Котик не отпускает. И не собирается ❤️';
+    if (t >= 0.7){
+      S.hugs += t; save();
+      burst(hug, ['🤗','❤️'], t >= 15 ? 18 : 8);
+    }
+    hugSay.textContent = msg;
+    hugLabel.textContent = 'Обними';
+    hug.style.setProperty('--p', 0);
+    showHugTotal();
+  }
+  if (window.PointerEvent){
+    hug.addEventListener('pointerdown', hugStart);
+    hug.addEventListener('pointerup', hugEnd);
+    hug.addEventListener('pointercancel', hugEnd);
+    hug.addEventListener('lostpointercapture', hugEnd);
+  } else {
+    hug.addEventListener('touchstart', hugStart, {passive:false});
+    hug.addEventListener('touchend', hugEnd);
+    hug.addEventListener('touchcancel', hugEnd);
+    hug.addEventListener('mousedown', hugStart);
+    window.addEventListener('mouseup', hugEnd);
+  }
+  hug.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  hug.addEventListener('keydown', function(e){ if ((e.key === ' ' || e.key === 'Enter') && !e.repeat){ e.preventDefault(); hugStart(); } });
+  hug.addEventListener('keyup', function(e){ if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); hugEnd(); } });
+  showHugTotal();
+
+  // ---------- конверт ----------
+  var envelope = document.getElementById('envelope');
+  var letter = document.getElementById('letter');
+  var bestSign = document.getElementById('bestSign');
+  letter.hidden = true;
+  envelope.hidden = false;
+  envelope.addEventListener('click', function(){
+    if (envelope.classList.contains('open')) return;
+    envelope.classList.add('open');
+    envelope.setAttribute('aria-expanded', 'true');
+    setTimeout(function(){
+      envelope.hidden = true;
+      bestSign.hidden = true;
+      letter.hidden = false;
+      burst(letter, ['❤️','✨'], 10);
+    }, reduce ? 0 : 500);
+  });
+
+  // ---------- тьмоки ----------
+  var GOAL = 50;
+  var milestones = {
+    1: 'Тьмок в щёчку 😚',
+    3: 'И в другую, чтоб не обижалась',
+    5: 'Тьмок в носик. Без предупреждения',
+    8: 'Тьмок в лобик. Тот самый',
+    10: 'Десять. Котик только разогревается',
+    13: 'Тьмок в макушку',
+    15: 'Так, это уже не утро, это свидание',
+    18: 'Тьмок в ладошку. Сожми, это на весь день',
+    21: 'Щёчки уже розовые. Котик видит',
+    25: 'Половина! Перерыв на перекус, тьмоки подождут',
+    28: 'Тьмок в плечико',
+    32: 'Тьмок в уголок улыбки',
+    36: 'Ты вообще в курсе, какая ты милая?',
+    40: 'Сорок. Котик не сдаётся',
+    43: 'Ещё чуть-чуть, лапка',
+    47: 'Три осталось… два…',
+    50: 'Норма на сегодня! Ты зацелована полностью. Остальное при встрече ❤️',
+    51: 'Бонусные котик выдаёт без лимита',
+    67: 'Сикс севен 💀 Какой сикс севен, ты совсем? Двенадцать',
+    130: '130 — это уровень моего интеллекта. Выше уже некуда 🧠 Но ты продолжай',
+    200: 'Двести! Котик выдал всё, что было, и даже больше. Но склад бездонный, тыкай дальше ❤️',
+    250: 'Ты всё ещё тут? Котик польщён 🥹',
+    300: 'Триста. Котик записал это в историю',
+    350: 'Котик ушёл за новой партией тьмоков. Пока выдаёт из запасов',
+    400: 'Ладно, ты победила. Ты лучше всех, и в этом тоже ❤️'
+  };
+
+  var PRE = [[0,'Воин'],[100,'Элита'],[300,'Мастер'],[600,'Грандмастер'],[1000,'Эпик'],[1800,'Легенда']];
+  var MYTHIC = 3000, STAR = 50;
+  var GEN = {'Элита':'Элиты','Мастер':'Мастера','Грандмастер':'Грандмастера','Эпик':'Эпика','Легенда':'Легенды','Мифический':'Мифического'};
+  var RANK_LINES = {
+    'Воин': 'Все с чего-то начинали',
+    'Элита': 'Апнула Элиту. Рандомы уже нервничают',
+    'Мастер': 'Мастер. Котик начинает подозревать, что тащишь ты',
+    'Грандмастер': 'Грандмастер. За тьмоки звёзды не слетают, можно не бояться',
+    'Эпик': 'Эпик. Тут обычно начинают кидать репорты. На тьмоки репорт не работает',
+    'Легенда': 'Легенда. Котик стоит в лобби и хлопает',
+    'Мифический': 'МИФИК. Лапка апнула мифа на тьмоках. Котик гордится и немного завидует',
+    'Мифическая честь': 'Мифическая честь. Котик теперь у тебя в саппорте. Навсегда',
+    'Мифическая слава': 'Мифическая слава. МВП каждого матча, без вариантов',
+    'Мифический бессмертный': 'Мифический бессмертный. Звёзды дальше бесконечные, а самая красивая из них всё равно ты'
+  };
+  var STAR_LINES = [
+    '+1 звезда. И ещё одна причина, почему ты лучшая',
+    '+1 звезда. Самая красивая в любом лобби',
+    '+1 звезда. Ты лучшая. Опять. Как обычно',
+    '+1 звезда. Красивая, да ещё и тащит',
+    '+1 звезда. Самая милая во всём рейтинге',
+    '+1 звезда. Котик опять залип на твою улыбку',
+    '+1 звезда. Лучшая девушка на сервере',
+    '+1 звезда. Котик гордится. Очень'
+  ];
+  var lastStarLine = -1;
+  function starLine(){
+    var i;
+    do { i = Math.floor(Math.random()*STAR_LINES.length); } while (i === lastStarLine && STAR_LINES.length > 1);
+    lastStarLine = i;
+    return STAR_LINES[i];
+  }
+  function rankOf(t){
+    if (t >= MYTHIC){
+      var s = Math.floor((t - MYTHIC) / STAR);
+      var n = s >= 100 ? 'Мифический бессмертный' : s >= 50 ? 'Мифическая слава' : s >= 25 ? 'Мифическая честь' : 'Мифический';
+      return {name:n, mythic:true, stars:s, prog:((t - MYTHIC) % STAR) / STAR, left: STAR - ((t - MYTHIC) % STAR)};
+    }
+    for (var i = PRE.length - 1; i >= 0; i--){
+      if (t >= PRE[i][0]){
+        var from = PRE[i][0];
+        var to = PRE[i+1] ? PRE[i+1][0] : MYTHIC;
+        var nextName = PRE[i+1] ? PRE[i+1][1] : 'Мифический';
+        return {name:PRE[i][1], mythic:false, stars:0, prog:(t - from) / (to - from), left: to - t, next: nextName};
+      }
+    }
+  }
+
+  var btn = document.getElementById('kiss');
+  var count = document.getElementById('count');
+  var extra = document.getElementById('extra');
+  var rankName = document.getElementById('rankName');
+  var rankBar = document.getElementById('rankBar');
+  var rankNext = document.getElementById('rankNext');
+  var rankSay = document.getElementById('rankSay');
+  var stats = document.getElementById('stats');
+  var ult = document.getElementById('ult');
+  var ultBar = document.getElementById('ultBar');
+  var ultPct = document.getElementById('ultPct');
+  var ultSay = document.getElementById('ultSay');
+  var counterBtns = document.getElementById('counterBtns');
+  var mimicBtn = document.getElementById('mimicBtn');
+  var unoBtn = document.getElementById('unoBtn');
+  var CHARGE = 25;
+
+  function renderCount(){
+    var n = S.today;
+    if (n === 0) count.textContent = 'Нажми, чтобы получить тьмок. Норма на сегодня: ' + GOAL;
+    else if (n <= GOAL) count.textContent = 'Сегодня: ' + n + ' из ' + GOAL;
+    else count.textContent = 'Сегодня: ' + n + ', уже бонусные';
+  }
+  function renderRank(){
+    var r = rankOf(S.total);
+    rankName.textContent = '';
+    rankName.appendChild(document.createTextNode('Ранг: ' + r.name));
+    if (r.mythic){
+      var st = document.createElement('span');
+      st.className = 'stars';
+      st.textContent = ' ★ ' + r.stars;
+      rankName.appendChild(st);
+      rankNext.textContent = 'До следующей звезды: ' + r.left;
+    } else {
+      rankNext.textContent = 'До ' + GEN[r.next] + ': ' + r.left;
+    }
+    rankBar.style.width = (r.prog * 100).toFixed(1) + '%';
+    var parts = ['Всего тьмоков: ' + S.total];
+    if (S.returned > 0) parts.push('Вернула котику: ' + S.returned);
+    stats.textContent = parts.join('. ');
+  }
+  function renderUlt(){
+    var p = Math.min(1, S.charge / CHARGE);
+    ultBar.style.width = (p * 100).toFixed(0) + '%';
+    ultPct.textContent = S.pending ? 'Твой ход' : Math.round(p * 100) + '%';
+    ult.classList.toggle('ready', !!S.pending);
+    counterBtns.hidden = !S.pending;
+  }
+
+  // добавляет тьмоки и возвращает, что произошло по пути
+  function addKisses(k){
+    var res = {milestone:null, rankUp:null, star:null};
+    var before = rankOf(S.total);
+    for (var i = 0; i < k; i++){
+      S.today++; S.total++;
+      if (milestones[S.today]) res.milestone = milestones[S.today];
+      var now = rankOf(S.total);
+      if (now.name !== before.name){ res.rankUp = RANK_LINES[now.name]; res.star = null; }
+      else if (now.mythic && now.stars !== before.stars && !res.rankUp){ res.star = true; }
+      before = now;
+    }
+    return res;
+  }
+  function applyResult(res, el){
+    if (res.milestone) extra.textContent = res.milestone;
+    if (res.rankUp){
+      rankSay.textContent = res.rankUp;
+      burst(rankName, ['⭐','✨','❤️'], 22, 'big');
+    } else if (res.star){
+      rankSay.textContent = starLine();
+      burst(rankName, ['⭐'], 8);
+    }
+  }
+
+  function castUlt(){
+    S.pending = true;
+    var res = addKisses(10);
+    save();
+    renderCount(); renderRank(); renderUlt();
+    ultSay.textContent = 'Котик использует «Множественные тьмоки». Эксклюзивная атака, копировать нельзя';
+    burst(btn, ['❤️','💋','❤️','😚'], 30, 'big');
+    applyResult(res, btn);
+  }
+
+  btn.addEventListener('click', function(){
+    rollDay();
+    var res = addKisses(1);
+    if (!S.pending) S.charge = Math.min(CHARGE, S.charge + 1);
+    save();
+    renderCount(); renderRank(); renderUlt();
+    applyResult(res, btn);
+    if (S.today === 67) burst(btn, ['6','7'], 16, 'digit');
+    else burst(btn, ['❤️','💋','❤️'], S.today === GOAL ? 28 : 7);
+    if (!reduce){ btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); }
+    if (!S.pending && S.charge >= CHARGE) setTimeout(castUlt, reduce ? 0 : 350);
+  });
+
+  function answer(kind){
+    if (!S.pending) return;
+    S.pending = false;
+    S.charge = 0;
+    S.returned += 10;
+    save();
+    renderRank(); renderUlt();
+    if (kind === 'mimic'){
+      ultSay.textContent = 'Мимик! Копировать было нельзя, но ты скопировала. Атака возвращена, теперь вы оба в тьмоках';
+      burst(mimicBtn, ['❤️','💋','❤️','✨'], 26, 'big', 'both');
+    } else {
+      ultSay.textContent = 'Уно-реверс! Атака возвращена отправителю. Котик в тьмоках по уши';
+      burst(unoBtn, ['🔄'], 4, 'big');
+      burst(unoBtn, ['❤️','💋'], 20, '', 'down');
+    }
+  }
+  mimicBtn.addEventListener('click', function(){ answer('mimic'); });
+  unoBtn.addEventListener('click', function(){ answer('uno'); });
+
+  renderCount();
+  renderRank();
+  renderUlt();
+  if (S.pending) ultSay.textContent = 'Котик использовал «Множественные тьмоки». Ответишь?';
+  if (S.total < 100 && !rankSay.textContent) rankSay.textContent = RANK_LINES['Воин'];
+})();
+</script>
+</body>
+</html>
